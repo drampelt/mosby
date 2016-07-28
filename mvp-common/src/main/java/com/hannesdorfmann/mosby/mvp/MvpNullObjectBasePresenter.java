@@ -1,7 +1,5 @@
 package com.hannesdorfmann.mosby.mvp;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.UiThread;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -94,11 +92,11 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
     return false;
   }
 
-  @UiThread @Override public void attachView(@NonNull V view) {
+  @Override public void attachView(V view) {
     this.view = new WeakReference<V>(view);
   }
 
-  @UiThread @NonNull protected V getView() {
+  protected V getView() {
     if (view != null) {
       V realView = view.get();
       if (realView != null) {
@@ -109,7 +107,7 @@ public abstract class MvpNullObjectBasePresenter<V extends MvpView> implements M
     return nullView;
   }
 
-  @UiThread @Override public void detachView(boolean retainInstance) {
+  @Override public void detachView(boolean retainInstance) {
     if (view != null) {
       view.clear();
       view = null;
