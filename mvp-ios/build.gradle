@@ -1,0 +1,27 @@
+apply plugin: 'moe'
+
+buildscript {
+    // Add central and local Maven repos
+    repositories {
+        maven {
+            url uri(System.getenv("INTEL_MULTI_OS_ENGINE_HOME") + "/gradle")
+        }
+        mavenCentral()
+    }
+    dependencies {
+        // MOE plugin
+        classpath 'com.intel.gradle:moeGradlePlugin:1.1.+'
+    }
+}
+
+repositories {
+    maven {
+        url uri(System.getenv("INTEL_MULTI_OS_ENGINE_HOME") + "/gradle")
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':mvp-common')
+}
